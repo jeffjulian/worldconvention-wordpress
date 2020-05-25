@@ -1,0 +1,50 @@
+version: "3.7"
+services:
+
+  wordpress:
+    depends_on:
+      - mysql
+      - phpmyadmin
+    image: wordpress:latest
+    container_name: worldconvention
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      WORDPRESS_DB_HOST: mysql:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: w0r!d
+      WORDPRESS_DB_NAME: wordpress
+    restart: always
+    volumes:
+      - "C:\\Projects\\WorldConvention\\html:/var/www/html"
+      - "C:\\Projects\\WorldConvention\\config:/usr/docker-local/etc/php/conf.d"
+
+  mysql:
+    image: mariadb:latest
+    container_name: worldconvention_db
+    volumes:
+      -  "C:\\Projects\\WorldConvention\\data:/var/lib/mysql"
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: w0r!d
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: w0r!d
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    depends_on: 
+      - mysql
+    container_name: worldconvention_phpmyadmin
+    ports:
+      - "8181:80"
+    environment:
+      PMA_HOST: mysql
+      MYSQL_USERNAME: wordpress
+      MYSQL_ROOT_PASSWORD: w0r!d
+
+volumes:
+  data: {}
+  html: {}
+  config: {}
