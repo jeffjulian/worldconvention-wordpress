@@ -6,45 +6,45 @@ services:
       - mysql
       - phpmyadmin
     image: wordpress:latest
-    container_name: worldconvention
+    container_name: carlajohnson
     ports:
-      - "80:80"
-      - "443:443"
+      - "6002:80"
+      - "7002:443"
     environment:
-      WORDPRESS_DB_HOST: mysql:3306
+      WORDPRESS_DB_HOST: carlajohnson_db:3306
       WORDPRESS_DB_USER: wordpress
-      WORDPRESS_DB_PASSWORD: w0r!d
+      WORDPRESS_DB_PASSWORD: c@rl@
       WORDPRESS_DB_NAME: wordpress
     restart: always
     volumes:
-      - "C:\\Projects\\WorldConvention\\html:/var/www/html"
-      - "C:\\Projects\\WorldConvention\\config:/usr/docker-local/etc/php/conf.d"
+      - "C:\\Projects\\carlajohnson\\html:/var/www/html"
+      - "C:\\Projects\\carlajohnson\\config:/usr/docker-local/etc/php/conf.d"
 
   mysql:
     image: mariadb:latest
-    container_name: worldconvention_db
+    container_name: carlajohnson_db
     volumes:
-      -  "C:\\Projects\\WorldConvention\\data:/var/lib/mysql"
+      -  "C:\\Projects\\carlajohnson\\data:/var/lib/mysql"
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: w0r!d
+      MYSQL_ROOT_PASSWORD: c@rl@
       MYSQL_DATABASE: wordpress
       MYSQL_USER: wordpress
-      MYSQL_PASSWORD: w0r!d
+      MYSQL_PASSWORD: c@rl@
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
     depends_on: 
       - mysql
-    container_name: worldconvention_phpmyadmin
+    container_name: carlajohnson_phpmyadmin
     ports:
-      - "8181:80"
+      - "8182:80"
     environment:
-      PMA_HOST: mysql
+      PMA_HOST: carlajohnson_db
       MYSQL_USERNAME: wordpress
-      MYSQL_ROOT_PASSWORD: w0r!d
+      MYSQL_ROOT_PASSWORD: c@rl@
 
-volumes:
-  data: {}
-  html: {}
-  config: {}
+networks:
+  default:
+    external:
+      name: nat

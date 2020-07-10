@@ -26,10 +26,10 @@ define( 'DB_NAME', 'wordpress');
 define( 'DB_USER', 'wordpress');
 
 /** MySQL database password */
-define( 'DB_PASSWORD', 'w0r!d');
+define( 'DB_PASSWORD', 'c@rl@');
 
 /** MySQL hostname */
-define( 'DB_HOST', 'mysql:3306');
+define( 'DB_HOST', 'carlajohnson_db:3306');
 
 /** Database Charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8');
@@ -46,14 +46,14 @@ define( 'DB_COLLATE', '');
  *
  * @since 2.6.0
  */
-define( 'AUTH_KEY',         'd8b476777f1b42a2cd29bcd65c429804498a146a');
-define( 'SECURE_AUTH_KEY',  '05569f94f5b8adf21c1d06135e6aa01c944a0803');
-define( 'LOGGED_IN_KEY',    '1cb942fc768c6c3065a17a44add72eac30935dca');
-define( 'NONCE_KEY',        '4b31b6be3bb7b8ca1fa15e5fc1143c21ac53b9aa');
-define( 'AUTH_SALT',        'f2f61f932457547c701dd7bf1ada46cfeaf0d8df');
-define( 'SECURE_AUTH_SALT', 'afb10f07be7e2fe91165f73f3db00b7c3bad4723');
-define( 'LOGGED_IN_SALT',   'bdcb86aa3d1c6e26140933c0558ac4b33db8786e');
-define( 'NONCE_SALT',       '93d20ff3710d3a94cc1c960e1d680662f04112d3');
+define( 'AUTH_KEY',         '04d7a64ec66f61a3acf4236b1457dccf958479c8');
+define( 'SECURE_AUTH_KEY',  '075cd0752f1cffddf43c5e236ac98ee931eb6541');
+define( 'LOGGED_IN_KEY',    '772cfa3749fca2fc41f6423046fef3dde7ebb938');
+define( 'NONCE_KEY',        'f9107f374205ce2820d845c82e5da603dc7873be');
+define( 'AUTH_SALT',        '8669ea6edf46e048c72129ed59e510f8a2459c60');
+define( 'SECURE_AUTH_SALT', '9099c1e5952a08d774d2cccf5ba71871fe2f03c0');
+define( 'LOGGED_IN_SALT',   '87fc90e4c7269b34a08774ffbc8714d72200cb00');
+define( 'NONCE_SALT',       'f66e119d18c5a07bab405e8cedf0a9371eac301a');
 
 /**#@-*/
 
@@ -84,6 +84,11 @@ define( 'WP_DEBUG', false );
 if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
 	$_SERVER['HTTPS'] = 'on';
 }
+
+if ( isset($_SERVER['HTTP_X_FORWARDED_HOST'])) {
+	$_SERVER['HTTP_HOST'] = $_SERVER['HTTP_X_FORWARDED_HOST'];
+}
+
 
 /* That's all, stop editing! Happy publishing. */
 
